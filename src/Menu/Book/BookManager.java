@@ -4,6 +4,8 @@ import Helper.Helper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class BookManager {
     private static final BookManager bookManager = new BookManager();
@@ -16,7 +18,7 @@ public class BookManager {
                   "Book1",
                   "1234567891",
                   100,
-                  new ArrayList<String>(Arrays.asList("author1")),
+                  new ArrayList<>(Collections.singletonList("author1")),
                   "publisher1",
                   100000
             ));
@@ -25,7 +27,7 @@ public class BookManager {
                   "Book2",
                   "2234567892",
                   200,
-                  new ArrayList<String>(Arrays.asList("author2", "author4")),
+                  new ArrayList<>(Arrays.asList("author2", "author4")),
                   "publisher2",
                   200000
             ));
@@ -34,7 +36,7 @@ public class BookManager {
                   "Book3",
                   "3234567893",
                   300,
-                  new ArrayList<String>(Arrays.asList("author3")),
+                  new ArrayList<>(Collections.singletonList("author3")),
                   "publisher3",
                   300000
             ));
@@ -75,5 +77,24 @@ public class BookManager {
               new int[]{10, 10, 6, 15, 15, 10},
               "| "
         );
+    }
+
+    public void addBook(
+          String title,
+          String isbn,
+          int page,
+          List<String> authors,
+          String publisher,
+          int price
+    ) {
+        books.add(new Book(
+              generateId(),
+              title,
+              isbn,
+              page,
+              authors,
+              publisher,
+              price
+        ));
     }
 }
