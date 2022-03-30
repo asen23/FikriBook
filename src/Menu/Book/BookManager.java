@@ -2,10 +2,7 @@ package Menu.Book;
 
 import Helper.Helper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class BookManager {
     private static final BookManager bookManager = new BookManager();
@@ -62,11 +59,12 @@ public class BookManager {
 
     public void listBook() {
         Helper.printTable(
-              new String[]{"Title", "ISBN", "Page", "Authors", "Publisher", "Price"},
+              new String[]{"ID", "Title", "ISBN", "Page", "Authors", "Publisher", "Price"},
               "=",
               books
                     .stream()
                     .map((book) -> new String[]{
+                          book.getId(),
                           book.getTitle(),
                           book.getIsbn(),
                           Integer.toString(book.getPage()),
@@ -74,7 +72,7 @@ public class BookManager {
                           book.getPublisher(),
                           Integer.toString(book.getPrice()),
                     }).toArray(String[][]::new),
-              new int[]{10, 10, 6, 15, 15, 10},
+              new int[]{50, 10, 10, 6, 15, 15, 10},
               "| "
         );
     }
@@ -96,5 +94,16 @@ public class BookManager {
               publisher,
               price
         ));
+    }
+
+    public void deleteBook(String id) throws Exception {
+        Optional<Book> book = books
+              .stream()
+              .filter((b) -> b.getId().equals(id))
+              .findFirst();
+        if(!book.isPresent()){
+            throw new Exception("Invalid book id!");
+        }
+        books.remove(book.orElse(null));
     }
 }

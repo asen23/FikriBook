@@ -58,8 +58,26 @@ public class AdminMenu extends Menu {
         Helper.prompt("Added book successfully!");
     }
 
-    private void deleteBook() {
+    private String getBookId(String s) {
+        String bookId = Helper.getString(
+              () -> Helper.print("Book id to " + s + "(0 to cancel): ")
+        );
+        if (bookId.equals("0")) {
+            Helper.prompt("Canceled " + s + "!");
+            return null;
+        }
+        return bookId;
+    }
 
+    private void deleteBook() {
+        listBook();
+        String bookId = getBookId("delete");
+        try {
+            bookManager.deleteBook(bookId);
+            Helper.prompt("Successfully deleted book!");
+        } catch (Exception e) {
+            Helper.prompt(e.getMessage());
+        }
     }
 
     private void editBook() {
