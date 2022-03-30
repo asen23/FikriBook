@@ -60,8 +60,7 @@ public class Auth {
                         throw new Exception("Admin account is inactive!");
                     }
                 }
-                Helper.println("Successfully logged in!");
-                Helper.prompt();
+                Helper.prompt("Successfully logged in!");
                 return;
             } catch (Exception e) {
                 Helper.println(e.getMessage());
@@ -105,8 +104,7 @@ public class Auth {
             }
             break;
         }
-        Helper.println("Successfully registered, please login with your new credential...");
-        Helper.prompt();
+        Helper.prompt("Successfully registered, please login with your new credential...");
     }
 
 }

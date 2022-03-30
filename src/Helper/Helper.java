@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class Helper {
-    private static Scanner scan = new Scanner(System.in);
+    private static final Scanner scan = new Scanner(System.in);
     private static boolean isDummyEnabled = false;
 
     public static void toggleDummy() {
@@ -78,9 +78,12 @@ public class Helper {
 
     public static void prompt() {
         println();
-        getString(() -> {
-            print("Press enter to continue...");
-        });
+        getString(() -> print("Press enter to continue..."));
+    }
+
+    public static void prompt(String s) {
+        println(s);
+        prompt();
     }
 
     public static String pad(String s, int pad) {
@@ -132,6 +135,6 @@ public class Helper {
     }
 
     public static String generateId(String prefix) {
-        return prefix + UUID.randomUUID().toString();
+        return prefix + UUID.randomUUID();
     }
 }
