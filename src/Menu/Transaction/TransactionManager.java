@@ -12,8 +12,8 @@ import java.util.Collections;
 
 public class TransactionManager {
     private static final TransactionManager transactionManager = new TransactionManager();
-    private final BookManager bookManager = BookManager.getInstance();
-    private final UserManager userManager = UserManager.getInstance();
+    private static final BookManager bookManager = BookManager.getInstance();
+    private static final UserManager userManager = UserManager.getInstance();
     private final ArrayList<Transaction> transactions = new ArrayList<>();
 
     private TransactionManager(){

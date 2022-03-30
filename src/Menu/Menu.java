@@ -5,8 +5,8 @@ import Menu.Book.BookManager;
 import Menu.Transaction.TransactionManager;
 
 public abstract class Menu {
-    protected BookManager bookManager = BookManager.getInstance();
-    protected TransactionManager transactionManager = TransactionManager.getInstance();
+    protected static BookManager bookManager = BookManager.getInstance();
+    protected static TransactionManager transactionManager = TransactionManager.getInstance();
 
     public void run() {
         while (true) {
@@ -16,6 +16,9 @@ public abstract class Menu {
                   "1. Display book",
             });
             Helper.println(getMenu());
+            Helper.println(new String[]{
+                  "0. Logout",
+            });
             boolean exit = processMenu();
             if(exit) {
                 return;

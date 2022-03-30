@@ -10,20 +10,16 @@ import Menu.User.User;
 import Menu.User.UserManager;
 
 public class Auth {
-    private final UserManager userManager;
+    private static final UserManager userManager = UserManager.getInstance();
     private User currentUser;
-
-    public Auth() {
-        userManager = UserManager.getInstance();
-    }
 
     public Menu run() {
         while (true) {
             if(currentUser != null){
                 switch (currentUser.getUserType()) {
-                    case Admin:
                     case Buyer:
                     case Owner:
+                    case Admin:
                         return new AdminMenu();
                 }
             }

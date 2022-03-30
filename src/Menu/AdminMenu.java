@@ -34,7 +34,8 @@ public class AdminMenu extends Menu {
             case 5:
                 listTransaction();
                 break;
-
+            case 0:
+                return true;
         }
         return false;
     }
