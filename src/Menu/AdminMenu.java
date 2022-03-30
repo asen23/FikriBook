@@ -41,12 +41,12 @@ public class AdminMenu extends Menu {
     }
 
     private void addBook() {
-        String title = Helper.getString(() -> Helper.println("Title :"));
-        String isbn = Helper.getString(() -> Helper.println("ISBN :"));
-        int page = Helper.getInt(() -> Helper.println("Page :"));
-        String author = Helper.getString(() -> Helper.println("Author :"));
-        String publisher = Helper.getString(() -> Helper.println("Publisher :"));
-        int price = Helper.getInt(() -> Helper.println("Price :"));
+        String title = Helper.getString(() -> Helper.print("Title :"));
+        String isbn = Helper.getString(() -> Helper.print("ISBN :"));
+        int page = Helper.getInt(() -> Helper.print("Page :"));
+        String author = Helper.getString(() -> Helper.print("Author :"));
+        String publisher = Helper.getString(() -> Helper.print("Publisher :"));
+        int price = Helper.getInt(() -> Helper.print("Price :"));
         bookManager.addBook(
               title,
               isbn,
