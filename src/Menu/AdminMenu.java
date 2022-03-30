@@ -2,7 +2,6 @@ package Menu;
 
 import Helper.Helper;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 public class AdminMenu extends Menu {
@@ -81,7 +80,15 @@ public class AdminMenu extends Menu {
     }
 
     private void editBook() {
-
+        listBook();
+        String bookId = getBookId("edit");
+        int price = Helper.getInt(() -> Helper.print("Price : "));
+        try {
+            bookManager.editBook(bookId, price);
+            Helper.prompt("Successfully edited book!");
+        } catch (Exception e) {
+            Helper.prompt(e.getMessage());
+        }
     }
 
     private void listTransaction() {

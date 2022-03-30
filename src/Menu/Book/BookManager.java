@@ -106,4 +106,15 @@ public class BookManager {
         }
         books.remove(book.orElse(null));
     }
+
+    public void editBook(String id, int price) throws Exception {
+        Optional<Book> book = books
+              .stream()
+              .filter((b) -> b.getId().equals(id))
+              .findFirst();
+        if(!book.isPresent()){
+            throw new Exception("Invalid book id!");
+        }
+        book.orElse(null).setPrice(price);
+    }
 }
