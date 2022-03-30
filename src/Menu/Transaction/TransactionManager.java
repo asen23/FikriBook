@@ -21,17 +21,19 @@ public class TransactionManager {
             transactions.add(new Transaction(
                   generateId(),
                   LocalDateTime.of(2022, 3, 1, 10, 10),
-                  Collections.singletonList(new CartItem("dummy1", 1)),
-                  "buyer1"
+                  Collections.singletonList(
+                        new CartItem("book-2a77cd44-4e85-4018-a21c-8c352f071d56", 1)
+                  ),
+                  "user-fba9b13e-c438-48cc-ad65-670c3d356e40"
             ));
             transactions.add(new Transaction(
                   generateId(),
                   LocalDateTime.of(2022, 3, 2, 2, 2),
                   Arrays.asList(
-                        new CartItem("dummy2", 2),
-                        new CartItem("dummy3", 1)
+                        new CartItem("book-9fe27cce-29f1-4778-98c7-d3bdcaf5ef1b", 2),
+                        new CartItem("book-67e7279c-0a2c-4321-9cca-3eb339dffd08", 1)
                         ),
-                  "buyer2"
+                  "user-adb4ff58-8d7a-45e6-a733-540ea4aa2545"
             ));
         }
     }

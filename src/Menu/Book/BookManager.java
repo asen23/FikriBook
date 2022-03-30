@@ -11,7 +11,7 @@ public class BookManager {
     private BookManager(){
         if(Helper.isDummyEnabled()){
             books.add(new Book(
-                  "dummy1",
+                  "book-2a77cd44-4e85-4018-a21c-8c352f071d56",
                   "Book1",
                   "1234567891",
                   100,
@@ -20,7 +20,7 @@ public class BookManager {
                   100000
             ));
             books.add(new Book(
-                  "dummy2",
+                  "book-9fe27cce-29f1-4778-98c7-d3bdcaf5ef1b",
                   "Book2",
                   "2234567892",
                   200,
@@ -29,7 +29,7 @@ public class BookManager {
                   200000
             ));
             books.add(new Book(
-                  "dummy3",
+                  "book-67e7279c-0a2c-4321-9cca-3eb339dffd08",
                   "Book3",
                   "3234567893",
                   300,

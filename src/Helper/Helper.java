@@ -135,6 +135,6 @@ public class Helper {
     }
 
     public static String generateId(String prefix) {
-        return prefix + UUID.randomUUID();
+        return prefix + "-" + UUID.randomUUID();
     }
 }

@@ -35,7 +35,7 @@ public class UserManager {
                   true
             ));
             users.add(new Buyer(
-                  "buyer1",
+                  "user-fba9b13e-c438-48cc-ad65-670c3d356e40",
                   "buyer1",
                   "buyer1@buyer.com",
                   "buyer1",
@@ -44,7 +44,7 @@ public class UserManager {
                   "buyer1"
             ));
             users.add(new Buyer(
-                  "buyer2",
+                  "user-adb4ff58-8d7a-45e6-a733-540ea4aa2545",
                   "buyer2",
                   "buyer2@buyer.com",
                   "buyer2",
@@ -53,7 +53,7 @@ public class UserManager {
                   "buyer2"
             ));
             users.add(new Buyer(
-                  "buyer3",
+                  "user-9970db0b-048f-4321-9cd8-b7717818e456",
                   "buyer3",
                   "buyer3@buyer.com",
                   "buyer3",
@@ -62,7 +62,7 @@ public class UserManager {
                   "buyer3"
             ));
             users.add(new Buyer(
-                  "buyer4",
+                  "user-26963a6d-1c91-4f09-92dc-865249a80d0f",
                   "buyer4",
                   "buyer4@buyer.com",
                   "buyer4",
