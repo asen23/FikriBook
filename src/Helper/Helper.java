@@ -3,6 +3,7 @@ package Helper;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 public class Helper {
     private static final Scanner scan = new Scanner(System.in);
@@ -26,7 +27,13 @@ public class Helper {
         }
     }
 
-    public static void printTable(String[] header, String headerSeparator, String[][] data, int[] pad, String separator) {
+    public static void printTable(
+          String[] header,
+          String headerSeparator,
+          String[][] data,
+          int[] pad,
+          String separator
+    ) {
         int totalLength = Arrays.stream(pad).sum() + header.length * separator.length() + 1;
         headerSeparator = new String(new char[totalLength]).replace("\0", headerSeparator);
         int[] fullPad = new int[header.length];
@@ -136,5 +143,9 @@ public class Helper {
 
     public static String generateId(String prefix) {
         return prefix + "-" + UUID.randomUUID();
+    }
+
+    public static String[] concatArray(String[] a, String[] b) {
+        return Stream.concat(Arrays.stream(a), Arrays.stream(b)).toArray(String[]::new);
     }
 }
