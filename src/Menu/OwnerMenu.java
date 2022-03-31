@@ -7,6 +7,10 @@ public class OwnerMenu extends AdminMenu {
     private final int currentMenuCount;
 
     public OwnerMenu() {
+        this(true);
+    }
+
+    protected OwnerMenu(boolean initAdditionalMenu) {
         super(false);
         currentMenuCount = menuCount - 1;
         ownerMenu = Helper.concatArray(
@@ -17,7 +21,9 @@ public class OwnerMenu extends AdminMenu {
                     menuCount++ + ". Toggle Admin Active Status"
               }
         );
-        super.initAdditionalMenu();
+        if(initAdditionalMenu){
+            initAdditionalMenu();
+        }
     }
 
     @Override

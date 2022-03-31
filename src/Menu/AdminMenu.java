@@ -5,32 +5,25 @@ import Helper.Helper;
 import java.util.Collections;
 
 public class AdminMenu extends Menu {
-    private String[] adminMenu;
+    private final String[] adminMenu;
     private final int currentMenuCount;
 
     public AdminMenu() {
-        super.initMenu();
-        currentMenuCount = menuCount - 1;
-        initMenu();
-        initAdditionalMenu();
+        this(true);
     }
 
     protected AdminMenu(boolean initAdditionalMenu) {
-        super.initMenu();
+        super(false);
         currentMenuCount = menuCount - 1;
-        initMenu();
-        if(initAdditionalMenu){
-            initAdditionalMenu();
-        }
-    }
-
-    protected void initMenu() {
         adminMenu = new String[]{
               menuCount++ +". Add Book",
               menuCount++ +". Delete Book",
               menuCount++ +". Edit Book",
               menuCount++ +". List Transaction"
         };
+        if(initAdditionalMenu){
+            initAdditionalMenu();
+        }
     }
 
     @Override

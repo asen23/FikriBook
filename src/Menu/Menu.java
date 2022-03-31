@@ -10,12 +10,19 @@ public abstract class Menu {
     protected String[] menu;
     protected int menuCount = 1;
 
-    protected void initMenu() {
+    public Menu() {
+        this(true);
+    }
+
+    protected Menu(boolean initAdditionalMenu) {
         menu = new String[]{
               "Menu",
               "====",
               menuCount++ + ". Display book",
         };
+        if(initAdditionalMenu){
+            initAdditionalMenu();
+        }
     }
 
     protected void initAdditionalMenu() {

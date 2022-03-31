@@ -7,7 +7,11 @@ public class BuyerMenu extends Menu{
     private final int currentMenuCount;
 
     public BuyerMenu() {
-        super.initMenu();
+        this(true);
+    }
+
+    protected BuyerMenu(boolean initAdditionalMenu) {
+        super(false);
         currentMenuCount = menuCount - 1;
         buyerMenu = new String[]{
               "2. View Cart",
@@ -15,7 +19,9 @@ public class BuyerMenu extends Menu{
               "4. Process Cart",
               "5. View Transaction History",
         };
-        super.initAdditionalMenu();
+        if(initAdditionalMenu){
+            initAdditionalMenu();
+        }
     }
 
     @Override
