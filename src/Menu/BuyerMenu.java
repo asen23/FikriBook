@@ -14,10 +14,10 @@ public class BuyerMenu extends Menu{
         super(false);
         currentMenuCount = menuCount - 1;
         buyerMenu = new String[]{
-              "2. View Cart",
-              "3. Add To Cart",
-              "4. Process Cart",
-              "5. View Transaction History",
+              menuCount++ +". View Cart",
+              menuCount++ +". Add To Cart",
+              menuCount++ +". Process Cart",
+              menuCount++ +". View Transaction History",
         };
         if(initAdditionalMenu){
             initAdditionalMenu();
