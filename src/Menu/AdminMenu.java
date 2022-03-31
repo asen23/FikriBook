@@ -5,42 +5,63 @@ import Helper.Helper;
 import java.util.Collections;
 
 public class AdminMenu extends Menu {
-    @Override
-    protected String[] getMenu() {
-        return new String[]{
-              "2. Add Book",
-              "3. Delete Book",
-              "4. Edit Book",
-              "5. List Transaction"
+    private String[] adminMenu;
+    private final int currentMenuCount;
+
+    public AdminMenu() {
+        super.initMenu();
+        currentMenuCount = menuCount - 1;
+        initMenu();
+        initAdditionalMenu();
+    }
+
+    protected AdminMenu(boolean initAdditionalMenu) {
+        super.initMenu();
+        currentMenuCount = menuCount - 1;
+        initMenu();
+        if(initAdditionalMenu){
+            initAdditionalMenu();
+        }
+    }
+
+    protected void initMenu() {
+        adminMenu = new String[]{
+              menuCount++ +". Add Book",
+              menuCount++ +". Delete Book",
+              menuCount++ +". Edit Book",
+              menuCount++ +". List Transaction"
         };
     }
 
-    @Override
-    protected boolean processMenu() {
-        int choice = Helper.getInt(() -> Helper.print(">> "));
-        switch (choice) {
-            case 1:
-                listBook();
-                break;
-            case 2:
-                addBook();
-                break;
-            case 3:
-                deleteBook();
-                break;
-            case 4:
-                editBook();
-                break;
-            case 5:
-                listTransaction();
-                break;
-            case 0:
-                return true;
-        }
-        return false;
+    protected void initAdditionalMenu() {
+        super.initAdditionalMenu();
     }
 
-    private void addBook() {
+    @Override
+    protected String[] getMenu() {
+        return adminMenu;
+    }
+
+    @Override
+    protected boolean processMenu(int choice) {
+        switch (choice - currentMenuCount) {
+            case 1:
+                addBook();
+                break;
+            case 2:
+                deleteBook();
+                break;
+            case 3:
+                editBook();
+                break;
+            case 4:
+                listTransaction();
+                break;
+        }
+        return super.processMenu(choice);
+    }
+
+    protected void addBook() {
         String title = Helper.getString(() -> Helper.print("Title :"));
         String isbn = Helper.getString(() -> Helper.print("ISBN :"));
         int page = Helper.getInt(() -> Helper.print("Page :"));
@@ -69,7 +90,7 @@ public class AdminMenu extends Menu {
         return bookId;
     }
 
-    private void deleteBook() {
+    protected void deleteBook() {
         listBook();
         String bookId = getBookId("delete");
         try {
@@ -80,7 +101,7 @@ public class AdminMenu extends Menu {
         }
     }
 
-    private void editBook() {
+    protected void editBook() {
         listBook();
         String bookId = getBookId("edit");
         int price = Helper.getInt(() -> Helper.print("Price : "));
@@ -92,7 +113,7 @@ public class AdminMenu extends Menu {
         }
     }
 
-    private void listTransaction() {
+    protected void listTransaction() {
         transactionManager.listTransaction();
     }
 }
