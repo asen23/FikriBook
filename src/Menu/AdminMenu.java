@@ -1,10 +1,12 @@
 package Menu;
 
 import Helper.Helper;
+import Menu.User.UserManager;
 
 import java.util.Collections;
 
 public class AdminMenu extends Menu {
+    protected static final UserManager userManager = UserManager.getInstance();
     private final String[] adminMenu;
     private final int currentMenuCount;
 
@@ -103,6 +105,18 @@ public class AdminMenu extends Menu {
     }
 
     protected void listTransaction() {
-        transactionManager.listTransaction();
+        Helper.printTable(
+              new String[]{"ID", "Date", "Buyer"},
+              "=",
+              transactionManager.listTransaction()
+                    .map(transaction -> new String[]{
+                          transaction.getId(),
+                          transaction.getDateTime().toString(),
+                          userManager.getEmailWithId(transaction.getBuyerId()),
+                    })
+                    .toArray(String[][]::new),
+              new int[]{50, 20, 30},
+              "| "
+        );
     }
 }
