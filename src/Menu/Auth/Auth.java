@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import Helper.Helper;
 import Menu.AdminMenu;
+import Menu.BuyerMenu;
+import Menu.OwnerMenu;
 import Menu.Menu;
 import Menu.User.Admin;
 import Menu.User.User;
@@ -18,7 +20,9 @@ public class Auth {
             if(currentUser != null){
                 switch (currentUser.getUserType()) {
                     case Buyer:
+                        return new BuyerMenu();
                     case Owner:
+                        return new OwnerMenu();
                     case Admin:
                         return new AdminMenu();
                 }
