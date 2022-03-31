@@ -33,10 +33,6 @@ public class AdminMenu extends Menu {
         };
     }
 
-    protected void initAdditionalMenu() {
-        super.initAdditionalMenu();
-    }
-
     @Override
     protected String[] getMenu() {
         return adminMenu;
