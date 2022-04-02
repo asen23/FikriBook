@@ -60,6 +60,21 @@ public abstract class Menu {
     }
 
     protected void listBook() {
-        bookManager.listBook();
+        Helper.printTable(
+              new String[]{"ID", "Title", "ISBN", "Page", "Authors", "Publisher", "Price"},
+              "=",
+              bookManager.listBook()
+                    .map((book) -> new String[]{
+                          book.getId(),
+                          book.getTitle(),
+                          book.getIsbn(),
+                          Integer.toString(book.getPage()),
+                          book.getAuthors().get(0),
+                          book.getPublisher(),
+                          Integer.toString(book.getPrice()),
+                    }).toArray(String[][]::new),
+              new int[]{50, 10, 10, 6, 15, 15, 10},
+              "| "
+        );
     }
 }
