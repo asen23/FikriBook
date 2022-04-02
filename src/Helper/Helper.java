@@ -3,6 +3,7 @@ package Helper;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class Helper {
@@ -102,42 +103,52 @@ public class Helper {
     }
 
     public static String getString() {
-        return scan.nextLine();
+        return getString(() -> {});
     }
 
     public static String getString(Runnable callback) {
-        callback.run();
-        return scan.nextLine();
+        return getString(callback, s -> false, s -> false);
+    }
+
+    public static String getString(
+          Runnable callback,
+          Function<String, Boolean> validation,
+          Function<String, Boolean> cancelCondition
+    ) {
+        String result;
+        do {
+            callback.run();
+            result = scan.nextLine();
+            if(cancelCondition.apply(result)) return result;
+        } while (validation.apply(result));
+        return  result;
     }
 
     public static int getInt() {
-        int result;
-        do {
-            try {
-                result = scan.nextInt();
-            } catch (Exception ignored) {
-                scan.nextLine();
-                continue;
-            }
-            scan.nextLine();
-            break;
-        } while (true);
-        return result;
+        return getInt(() -> {});
     }
 
     public static int getInt(Runnable callback) {
-        int result;
+        return getInt(callback, 0, i -> false, i -> false);
+    }
+
+    public static int getInt(
+          Runnable callback,
+          int defaultValue,
+          Function<Integer, Boolean> validation,
+          Function<Integer, Boolean> cancelCondition
+    ) {
+        int result = defaultValue;
         do {
-            try {
-                callback.run();
+            callback.run();
+            if (scan.hasNextInt()) {
                 result = scan.nextInt();
-            } catch (Exception ignored) {
                 scan.nextLine();
-                continue;
+            } else {
+                scan.nextLine();
             }
-            scan.nextLine();
-            break;
-        } while (true);
+            if (cancelCondition.apply(result)) return result;
+        } while (validation.apply(result));
         return result;
     }
 
