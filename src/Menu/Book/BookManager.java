@@ -3,6 +3,7 @@ package Menu.Book;
 import Helper.Helper;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class BookManager {
     private static final BookManager bookManager = new BookManager();
@@ -57,24 +58,8 @@ public class BookManager {
               .orElse(0);
     }
 
-    public void listBook() {
-        Helper.printTable(
-              new String[]{"ID", "Title", "ISBN", "Page", "Authors", "Publisher", "Price"},
-              "=",
-              books
-                    .stream()
-                    .map((book) -> new String[]{
-                          book.getId(),
-                          book.getTitle(),
-                          book.getIsbn(),
-                          Integer.toString(book.getPage()),
-                          book.getAuthors().get(0),
-                          book.getPublisher(),
-                          Integer.toString(book.getPrice()),
-                    }).toArray(String[][]::new),
-              new int[]{50, 10, 10, 6, 15, 15, 10},
-              "| "
-        );
+    public Stream<Book> listBook() {
+        return books.stream();
     }
 
     public void addBook(
