@@ -29,6 +29,11 @@ public class AdminMenu extends Menu {
     }
 
     @Override
+    protected String getHeaderSuffix() {
+        return "(Admin)";
+    }
+
+    @Override
     protected String[] getMenu() {
         return adminMenu;
     }

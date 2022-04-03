@@ -36,7 +36,7 @@ public class Helper {
           String separator
     ) {
         int totalLength = Arrays.stream(pad).sum() + header.length * separator.length() + 1;
-        headerSeparator = new String(new char[totalLength]).replace("\0", headerSeparator);
+        headerSeparator = repeatString(headerSeparator, totalLength);
         int[] fullPad = new int[header.length];
         for (int i = 0; i < header.length; i++) {
             if (i >= pad.length) {
@@ -46,10 +46,7 @@ public class Helper {
             }
         }
         Helper.println(headerSeparator);
-        for (int i = 0; i < header.length; i++) {
-            Helper.print(separator + pad(header[i], fullPad[i]));
-        }
-        Helper.println(separator);
+        println(header, fullPad, separator);
         Helper.println(headerSeparator);
         for (String[] item : data) {
             println(item, fullPad, separator);
@@ -103,11 +100,16 @@ public class Helper {
     }
 
     public static String getString() {
-        return getString(() -> {});
+        return getString(() -> {
+        });
     }
 
     public static String getString(Runnable callback) {
         return getString(callback, s -> false, s -> false);
+    }
+
+    public static String getString(Runnable callback, Function<String, Boolean> validation) {
+        return getString(callback, validation, s -> false);
     }
 
     public static String getString(
@@ -119,17 +121,26 @@ public class Helper {
         do {
             callback.run();
             result = scan.nextLine();
-            if(cancelCondition.apply(result)) return result;
+            if (cancelCondition.apply(result)) return result;
         } while (validation.apply(result));
-        return  result;
+        return result;
     }
 
     public static int getInt() {
-        return getInt(() -> {});
+        return getInt(() -> {
+        });
     }
 
     public static int getInt(Runnable callback) {
         return getInt(callback, 0, i -> false, i -> false);
+    }
+
+    public static int getInt(
+          Runnable callback,
+          int defaultValue,
+          Function<Integer, Boolean> validation
+    ) {
+        return getInt(callback, 0, validation, i -> false);
     }
 
     public static int getInt(
@@ -158,5 +169,18 @@ public class Helper {
 
     public static String[] concatArray(String[] a, String[] b) {
         return Stream.concat(Arrays.stream(a), Arrays.stream(b)).toArray(String[]::new);
+    }
+
+    public static String repeatString(String s, int count) {
+        return new String(new char[count]).replace("\0", s);
+    }
+
+    public static void cls() {
+        Helper.print(repeatString("\r\n", 100));
+    }
+
+    public static void printHeader(String header) {
+        println(header);
+        println(repeatString("=", 50));
     }
 }

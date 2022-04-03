@@ -27,9 +27,9 @@ public class Auth {
                         return new AdminMenu();
                 }
             }
+            Helper.cls();
+            Helper.printHeader("FikriBook");
             Helper.println(new String[]{
-                  "FikriBook",
-                  "=========",
                   "1. Login",
                   "2. Register",
                   "0. Exit",
@@ -50,6 +50,8 @@ public class Auth {
 
     private void login() {
         while (true) {
+            Helper.cls();
+            Helper.printHeader("Login");
             String email = Helper.getString(() -> Helper.print("Email : "));
             String password = Helper.getString(() -> Helper.print("Password : "));
             try {
@@ -73,6 +75,8 @@ public class Auth {
 
     private void register() {
         while (true) {
+            Helper.cls();
+            Helper.printHeader("Register");
             String name = Helper.getString(() -> Helper.print("Name : "));
             String email = Helper.getString(() -> Helper.print("Email : "));
             String password = Helper.getString(() -> Helper.print("Password : "));

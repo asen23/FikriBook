@@ -27,6 +27,11 @@ public class OwnerMenu extends AdminMenu {
     }
 
     @Override
+    protected String getHeaderSuffix() {
+        return "(Owner)";
+    }
+
+    @Override
     protected String[] getMenu() {
         return ownerMenu;
     }

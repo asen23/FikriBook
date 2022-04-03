@@ -25,6 +25,11 @@ public class BuyerMenu extends Menu{
     }
 
     @Override
+    protected String getHeaderSuffix() {
+        return "(Buyer)";
+    }
+
+    @Override
     protected String[] getMenu() {
         return buyerMenu;
     }

@@ -16,11 +16,9 @@ public abstract class Menu {
 
     protected Menu(boolean initAdditionalMenu) {
         menu = new String[]{
-              "Menu",
-              "====",
               menuCount++ + ". Display book",
         };
-        if(initAdditionalMenu){
+        if (initAdditionalMenu) {
             initAdditionalMenu();
         }
     }
@@ -35,8 +33,12 @@ public abstract class Menu {
         );
     }
 
+    protected abstract String getHeaderSuffix();
+
     public void run() {
         while (true) {
+            Helper.cls();
+            Helper.printHeader("FikriBook Menu " + getHeaderSuffix());
             Helper.println(menu);
             int choice = Helper.getInt(() -> Helper.print(">> "));
             boolean exit = processMenu(choice);
@@ -60,6 +62,8 @@ public abstract class Menu {
     }
 
     protected void listBook() {
+        Helper.cls();
+        Helper.printHeader("Book List");
         Helper.printTable(
               new String[]{"ID", "Title", "ISBN", "Page", "Authors", "Publisher", "Price"},
               "=",
@@ -76,5 +80,6 @@ public abstract class Menu {
               new int[]{50, 10, 10, 6, 15, 15, 10},
               "| "
         );
+        Helper.prompt();
     }
 }
