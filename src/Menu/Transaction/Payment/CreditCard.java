@@ -1,9 +1,9 @@
 package Menu.Transaction.Payment;
 
-public class DebitCard implements Payment {
+public class CreditCard implements Payment {
     private final String bankName;
 
-    public DebitCard(String bankName) {
+    public CreditCard(String bankName) {
         this.bankName = bankName;
     }
 
@@ -14,6 +14,6 @@ public class DebitCard implements Payment {
 
     @Override
     public String getName() {
-        return bankName + " (Debit)";
+        return bankName + " (Credit)";
     }
 }
