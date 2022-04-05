@@ -21,7 +21,11 @@ public class AdminMenu extends Menu {
               menuCount++ +". Add Book",
               menuCount++ +". Delete Book",
               menuCount++ +". Edit Book",
-              menuCount++ +". List Transaction"
+              menuCount++ +". List Transaction",
+              menuCount++ +". Display User",
+              menuCount++ +". Display User Detail",
+              menuCount++ +". Edit User",
+              menuCount++ +". Delete User"
         };
         if(initAdditionalMenu){
             initAdditionalMenu();
@@ -53,6 +57,19 @@ public class AdminMenu extends Menu {
             case 4:
                 listTransaction();
                 break;
+            case 5:
+            	listUser();
+            	Helper.prompt();
+            	break;
+            case 6:
+            	userDetail();
+            	break;
+            case 7:
+            	editUser();
+            	break;
+            case 8:
+            	deleteUser();
+            	break;
         }
         return super.processMenu(choice);
     }
@@ -124,4 +141,72 @@ public class AdminMenu extends Menu {
               "| "
         );
     }
+    
+    protected void listUser() {
+    	Helper.printTable(
+    			new String[] {"ID","Name","Email"},
+    			"=",
+    			userManager.listUser()
+    			.map(user -> new String[] {
+    					user.getId(),
+    					user.getName(),
+    					user.getEmail(),
+    			})
+    			.toArray(String[][]::new),
+    			new int[] {50,10,30},
+    			"| "
+    			);
+    	}
+    
+    protected void userDetail() {
+    	listUser();
+    	
+    	Helper.print("Input User ID: ");
+    	String userId = Helper.getString();
+    	
+    	Helper.println();
+    	
+    	Helper.println("Here is the Detail of your User!");
+    	Helper.println("User ID: "+userId);
+    	Helper.println("Name: "+userManager.getName(userId));
+    	Helper.println("Email: "+userManager.getEmail(userId));
+    	Helper.println("Password: "+userManager.getPassword(userId));
+    	Helper.prompt();
+    }
+    
+    private String getUserId(String s) {
+        String userId = Helper.getString(
+              () -> Helper.print("User id to " + s + "(0 to cancel): ")
+        );
+        if (userId.equals("0")) {
+            Helper.prompt("Canceled " + s + "!");
+            return null;
+        }
+        return userId;
+    }
+    
+    protected void deleteUser() {
+        listUser();
+        String userId = getUserId("delete");
+        try {
+            userManager.deleteUser(userId);
+            Helper.prompt("Successfully deleted user!");
+        } catch (Exception e) {
+            Helper.prompt(e.getMessage());
+        }
+    }
+    
+    protected void editUser() {
+    	listUser();
+        String userId = getUserId("edit");
+        String email = Helper.getString(() -> Helper.print("Email : "));;
+        String password = Helper.getString(() -> Helper.print("Password : "));;
+        try {
+        	userManager.editUser(userId, email, password);
+            Helper.prompt("Successfully edited user!");
+        } catch (Exception e) {
+            Helper.prompt(e.getMessage());
+        }
+    }
+    
 }

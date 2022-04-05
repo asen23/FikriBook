@@ -1,10 +1,13 @@
 package Menu.User;
 
 import Helper.Helper;
+import Menu.Book.Book;
+import Menu.Transaction.Transaction;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class UserManager {
     private static final UserManager userManager = new UserManager();
@@ -124,5 +127,59 @@ public class UserManager {
               address,
               phoneNumber
         ));
+    }
+    
+    public String getName(String userId) {
+        return users
+              .stream()
+              .filter((user) -> user.getId().equals(userId))
+              .findFirst()
+              .map(User::getName)
+              .orElse("404 Not Found");
+    }
+    
+    public String getEmail(String userId) {
+        return users
+              .stream()
+              .filter((user) -> user.getId().equals(userId))
+              .findFirst()
+              .map(User::getEmail)
+              .orElse("404 Not Found");
+    }
+    
+    public String getPassword(String userId) {
+        return users
+              .stream()
+              .filter((user) -> user.getId().equals(userId))
+              .findFirst()
+              .map(User::getPassword)
+              .orElse("404 Not Found");
+    }
+    
+    public void deleteUser(String id) throws Exception {
+        Optional<User> user = users
+              .stream()
+              .filter((b) -> b.getId().equals(id))
+              .findFirst();
+        if(!user.isPresent()){
+            throw new Exception("Invalid user id!");
+        }
+        users.remove(user.orElse(null));
+    }
+
+    public void editUser(String id, String email, String password) throws Exception {
+        Optional<User> user = users
+              .stream()
+              .filter((b) -> b.getId().equals(id))
+              .findFirst();
+        if(!user.isPresent()){
+            throw new Exception("Invalid user id!");
+        }
+        user.orElse(null).setEmail(email);
+        user.orElse(null).setPassword(password);
+    }
+     
+    public Stream<User> listUser() {
+        return users.stream();
     }
 }
