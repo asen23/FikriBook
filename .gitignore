@@ -4,3 +4,4 @@ out
 .vscode
 .idea
 *.iml
+.metadata
