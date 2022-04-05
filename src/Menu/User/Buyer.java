@@ -1,11 +1,16 @@
 package Menu.User;
 
+import Menu.Transaction.Cart.Cart;
+import Menu.Transaction.Cart.CartItem;
+
 import java.time.LocalDate;
+import java.util.stream.Stream;
 
 public class Buyer extends User{
     private final LocalDate dob;
     private String address;
     private String phoneNumber;
+    private final Cart cart;
 
     public Buyer(
           String id,
@@ -20,6 +25,7 @@ public class Buyer extends User{
         this.dob = dob;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.cart = new Cart();
     }
 
     public LocalDate getDob() {
@@ -40,6 +46,18 @@ public class Buyer extends User{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Stream<CartItem> getCartItem() {
+        return cart.getItems();
+    }
+
+    public void addCart(String bookId, int quantity) {
+        cart.addBook(bookId, quantity);
+    }
+
+    public void editCart(String bookId, int quantity) {
+        cart.editBookQuantity(bookId, quantity);
     }
 
     @Override

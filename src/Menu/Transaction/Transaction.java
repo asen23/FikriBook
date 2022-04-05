@@ -5,6 +5,7 @@ import Menu.Transaction.Cart.CartItem;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Transaction {
     private final String id;
@@ -17,7 +18,7 @@ public class Transaction {
         this.dateTime = dateTime;
         this.details = details
               .stream()
-              .map(cartItem -> new Detail(cartItem.bookId, cartItem.quantity))
+              .map(cartItem -> new Detail(cartItem.getBookId(), cartItem.getQuantity()))
               .collect(Collectors.toList());
         this.buyerId = buyerId;
     }
@@ -32,5 +33,9 @@ public class Transaction {
 
     public String getBuyerId() {
         return buyerId;
+    }
+
+    public Stream<Detail> getDetails() {
+        return details.stream();
     }
 }
