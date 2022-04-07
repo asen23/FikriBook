@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 public class UserManager {
     private static final UserManager userManager = new UserManager();
     private final ArrayList<User> users = new ArrayList<>();
+    private User currentUser = null;
 
     private UserManager() {
         users.add(new Owner(generateId(), "Owner", "owner@fikribook.com", "idk"));
@@ -219,6 +220,14 @@ public class UserManager {
     ) throws Exception {
         Buyer buyer = getBuyer(userId);
         buyer.editCartItem(bookId,quantity);
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 }
 

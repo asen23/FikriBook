@@ -8,17 +8,15 @@ import Menu.BuyerMenu;
 import Menu.OwnerMenu;
 import Menu.Menu;
 import Menu.User.Admin;
-import Menu.User.User;
 import Menu.User.UserManager;
 
 public class Auth {
     private static final UserManager userManager = UserManager.getInstance();
-    private User currentUser;
 
     public Menu run() {
         while (true) {
-            if(currentUser != null){
-                switch (currentUser.getUserType()) {
+            if(userManager.getCurrentUser() != null){
+                switch (userManager.getCurrentUser().getUserType()) {
                     case Buyer:
                         return new BuyerMenu();
                     case Owner:
@@ -55,10 +53,10 @@ public class Auth {
             String email = Helper.getString(() -> Helper.print("Email : "));
             String password = Helper.getString(() -> Helper.print("Password : "));
             try {
-                currentUser = userManager.login(email, password);
-                if(currentUser instanceof Admin) {
-                    if(!((Admin) currentUser).isActive()) {
-                        currentUser = null;
+                userManager.setCurrentUser(userManager.login(email, password));
+                if(userManager.getCurrentUser() instanceof Admin) {
+                    if(!((Admin) userManager.getCurrentUser()).isActive()) {
+                        userManager.setCurrentUser(null);
                         throw new Exception("Admin account is inactive!");
                     }
                 }
