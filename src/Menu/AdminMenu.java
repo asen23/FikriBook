@@ -130,7 +130,7 @@ public class AdminMenu extends Menu {
         Helper.printTable(
               new String[]{"ID", "Date", "Buyer"},
               "=",
-              transactionManager.listTransaction()
+              transactionManager.getTransaction()
                     .map(transaction -> new String[]{
                           transaction.getId(),
                           transaction.getDateTime().toString(),

@@ -1,6 +1,6 @@
 package Menu.Transaction;
 
-class Detail {
+public class Detail {
     private final String bookId;
     private final int quantity;
 

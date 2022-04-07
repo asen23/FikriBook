@@ -52,11 +52,11 @@ public class Buyer extends User{
         return cart.getItems();
     }
 
-    public void addCart(String bookId, int quantity) {
+    public void addCartItem(String bookId, int quantity) {
         cart.addBook(bookId, quantity);
     }
 
-    public void editCart(String bookId, int quantity) {
+    public void editCartItem(String bookId, int quantity) {
         cart.editBookQuantity(bookId, quantity);
     }
 
