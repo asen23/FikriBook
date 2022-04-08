@@ -67,6 +67,7 @@ public abstract class Menu {
 			myEditUser();
 			break;
 		case 0:
+			userManager.setCurrentUser(null);
 			return true;
 		}
 		return false;
@@ -109,8 +110,7 @@ public abstract class Menu {
 
 	protected String getMyUserDetail() {
 		User userTemp = userManager.getCurrentUser();
-		String userId = userTemp.getId();
-		return userId;
+		return userTemp.getId();
 	}
 
 	protected void myUserDetail() {
@@ -129,9 +129,7 @@ public abstract class Menu {
 		String userId = getMyUserDetail();
 
 		String email = Helper.getString(() -> Helper.print("Email : "));
-		;
 		String password = Helper.getString(() -> Helper.print("Password : "));
-		;
 		try {
 			userManager.editUser(userId, email, password);
 			Helper.prompt("Successfully edited book!");
