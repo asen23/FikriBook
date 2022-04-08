@@ -233,6 +233,22 @@ public class UserManager {
     public boolean isValidEmail(String email) {
         return Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE).matcher(email).find();
     }
+
+    public String isValidPassword(String password) {
+        if(password.length() < 8) {
+            return "Password should be at least 8 characters long";
+        }
+        if(!password.matches(".*[A-Z].*")) {
+            return "Password should include at least one uppercase character";
+        }
+        if(!password.matches(".*[a-z].*")) {
+            return "Password should include at least one lowercase character";
+        }
+        if(!password.matches(".*[0-9].*")) {
+            return "Password should include at least one number";
+        }
+        return "";
+    }
 }
 
 

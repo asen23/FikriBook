@@ -15,7 +15,7 @@ public class Auth {
 
     public Menu run() {
         while (true) {
-            if(userManager.getCurrentUser() != null){
+            if (userManager.getCurrentUser() != null) {
                 switch (userManager.getCurrentUser().getUserType()) {
                     case Buyer:
                         return new BuyerMenu();
@@ -51,11 +51,13 @@ public class Auth {
             Helper.cls();
             Helper.printHeader("Login");
             String email = Helper.getString(() -> Helper.print("Email : "));
+            if (email.isEmpty()) return;
             String password = Helper.getString(() -> Helper.print("Password : "));
+            if (password.isEmpty()) return;
             try {
                 userManager.setCurrentUser(userManager.login(email, password));
-                if(userManager.getCurrentUser() instanceof Admin) {
-                    if(!((Admin) userManager.getCurrentUser()).isActive()) {
+                if (userManager.getCurrentUser() instanceof Admin) {
+                    if (!((Admin) userManager.getCurrentUser()).isActive()) {
                         userManager.setCurrentUser(null);
                         throw new Exception("Admin account is inactive!");
                     }
@@ -66,7 +68,7 @@ public class Auth {
                 Helper.println(e.getMessage());
             }
             String choice = Helper.getString(() -> Helper.println("Try again? (y/n)"));
-            if(choice.equals("y")) continue;
+            if (choice.equals("y")) continue;
             break;
         }
     }
@@ -76,11 +78,32 @@ public class Auth {
             Helper.cls();
             Helper.printHeader("Register");
             String name = Helper.getString(() -> Helper.print("Name : "));
-            String email = Helper.getString(() -> Helper.print("Email : "));
-            String password = Helper.getString(() -> Helper.print("Password : "));
+            if (name.isEmpty()) return;
+            String email = Helper.getString(
+                  () -> Helper.print("Email : "),
+                  input -> {
+                      if (userManager.isValidEmail(input)) return false;
+                      Helper.println("Invalid email format!");
+                      return true;
+                  },
+                  String::isEmpty
+            );
+            if (email.isEmpty()) return;
+            String password = Helper.getString(
+                  () -> Helper.print("Password : "),
+                  input -> {
+                      String errorMessage = userManager.isValidPassword(input);
+                      if (errorMessage.isEmpty()) return false;
+                      Helper.println(errorMessage);
+                      return true;
+                  },
+                  String::isEmpty
+            );
+            if (password.isEmpty()) return;
             LocalDate dob;
             while (true) {
                 String dobString = Helper.getString(() -> Helper.print("DOB(yyyy-mm-dd) : "));
+                if (dobString.isEmpty()) return;
                 try {
                     dob = LocalDate.parse(dobString);
                 } catch (Exception ignored) {
@@ -90,7 +113,17 @@ public class Auth {
                 break;
             }
             String address = Helper.getString(() -> Helper.print("Address : "));
-            String phoneNumber = Helper.getString(() -> Helper.print("phoneNumber : "));
+            if (address.isEmpty()) return;
+            String phoneNumber = Helper.getString(
+                  () -> Helper.print("Phone Number : "),
+                  input -> {
+                      if (input.matches("[0-9]+")) return false;
+                      Helper.println("Phone Number should only contain number");
+                      return true;
+                  },
+                  String::isEmpty
+            );
+            if (phoneNumber.isEmpty()) return;
             try {
                 userManager.register(
                       name,

@@ -152,23 +152,10 @@ public abstract class Menu {
         String password = Helper.getString(
               () -> Helper.print("Password (enter to keep current value) : "),
               input -> {
-                  if(input.length() < 8) {
-                      Helper.println("Password should be at least 8 characters long");
-                      return true;
-                  }
-                  if(!input.matches(".*[A-Z].*")) {
-                      Helper.println("Password should include at least one uppercase character");
-                      return true;
-                  }
-                  if(!input.matches(".*[a-z].*")) {
-                      Helper.println("Password should include at least one lowercase character");
-                      return true;
-                  }
-                  if(!input.matches(".*[0-9].*")) {
-                      Helper.println("Password should include at least one number");
-                      return true;
-                  }
-                  return false;
+                  String errorMessage = userManager.isValidPassword(input);
+                  if(errorMessage.isEmpty()) return false;
+                  Helper.println(errorMessage);
+                  return true;
               },
               String::isEmpty
         );
