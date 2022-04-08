@@ -224,7 +224,7 @@ public class UserManager {
         return users
               .stream()
               .filter(user -> user instanceof Admin)
-              .map(user -> (Admin)user);
+              .map(user -> (Admin) user);
     }
 
     private Buyer getBuyer(String userId) throws Exception {
@@ -253,6 +253,10 @@ public class UserManager {
           int quantity
     ) throws Exception {
         Buyer buyer = getBuyer(userId);
+        if (buyer
+              .getCartItem()
+              .anyMatch(cart -> cart.getBookId().equals(bookId))
+        ) throw new Exception("Book already added to cart");
         buyer.addCartItem(bookId, quantity);
     }
 

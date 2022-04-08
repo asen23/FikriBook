@@ -54,6 +54,14 @@ public class BookManager {
               .stream()
               .anyMatch((book -> book.getId().equals(id)));
     }
+
+    public Book getBook(String id) {
+        return books
+              .stream()
+              .filter(book -> book.getId().equals(id))
+              .findFirst()
+              .orElse(null);
+    }
     
     public String getTitle(String bookId) {
         return books
