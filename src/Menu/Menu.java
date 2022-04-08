@@ -8,6 +8,7 @@ import Menu.User.UserManager;
 
 public abstract class Menu {
 	protected static final UserManager userManager = UserManager.getInstance();
+
 	protected static BookManager bookManager = BookManager.getInstance();
 	protected static TransactionManager transactionManager = TransactionManager.getInstance();
 	protected String[] menu;
@@ -138,4 +139,5 @@ public abstract class Menu {
 			Helper.prompt(e.getMessage());
 		}
 	}
+
 }

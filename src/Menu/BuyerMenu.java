@@ -67,7 +67,7 @@ public class BuyerMenu extends Menu {
     private void viewCartItems() {
         Helper.cls();
         Helper.printHeader("Cart Content");
-        String userId = "user-fba9b13e-c438-48cc-ad65-670c3d356e40";
+        String userId = userManager.getCurrentUser().getId();
         try {
             Helper.printTable(
                     new String[]{"Book ID", "Quantity"},
@@ -87,7 +87,7 @@ public class BuyerMenu extends Menu {
     }
 
     protected void addCartItem() {
-        String userId = "user-fba9b13e-c438-48cc-ad65-670c3d356e40";
+        String userId = userManager.getCurrentUser().getId();
         Helper.cls();
         Helper.printHeader("Add Book to Cart");
         printBookList();
@@ -102,7 +102,7 @@ public class BuyerMenu extends Menu {
     }
 
     protected void editCartItem() {
-        String userId = "user-fba9b13e-c438-48cc-ad65-670c3d356e40";
+        String userId = userManager.getCurrentUser().getId();
         Helper.cls();
         Helper.printHeader("Edit Cart");
         viewCartItems();
@@ -142,11 +142,11 @@ public class BuyerMenu extends Menu {
         String bankName;
         switch (paymentChoice) {
             case 1:
-                bankName = Helper.getString(() -> Helper.print("Enter bank name"));
+                bankName = Helper.getString(() -> Helper.print("Enter bank name "));
                 payment = new CreditCard(bankName);
                 break;
             case 2:
-                bankName = Helper.getString(() -> Helper.print("Enter bank name"));
+                bankName = Helper.getString(() -> Helper.print("Enter bank name "));
                 payment = new DebitCard(bankName);
                 break;
             case 3:
@@ -159,7 +159,7 @@ public class BuyerMenu extends Menu {
         boolean paymentSuccess = payment.pay(1);
         if (paymentSuccess) {
             try {
-                String userId = "user-fba9b13e-c438-48cc-ad65-670c3d356e40";
+                String userId = userManager.getCurrentUser().getId();
                 transactionManager.processCart(userManager.getCartItems(userId).collect(Collectors.toList()), userId);
             } catch (Exception ignore) {
             }
