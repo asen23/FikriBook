@@ -17,9 +17,16 @@ public class AdminMenu extends Menu {
 	protected AdminMenu(boolean initAdditionalMenu) {
 		super(false);
 		currentMenuCount = menuCount - 1;
-		adminMenu = new String[] { menuCount++ + ". Add Book", menuCount++ + ". Delete Book",
-				menuCount++ + ". Edit Book", menuCount++ + ". List Transaction", menuCount++ + ". Display User",
-				menuCount++ + ". Display User Detail", menuCount++ + ". Edit User", menuCount++ + ". Delete User" };
+		adminMenu = new String[] { 
+				menuCount++ + ". Add Book", 
+				menuCount++ + ". Delete Book",
+				menuCount++ + ". Edit Book", 
+				menuCount++ + ". List Transaction", 
+				menuCount++ + ". Display User",
+				menuCount++ + ". Display User Detail", 
+				menuCount++ + ". Edit User", 
+				menuCount++ + ". Delete User" 
+		};
 		if (initAdditionalMenu) {
 			initAdditionalMenu();
 		}

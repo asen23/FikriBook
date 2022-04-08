@@ -18,8 +18,12 @@ public abstract class Menu {
 	}
 
 	protected Menu(boolean initAdditionalMenu) {
-		menu = new String[] { menuCount++ + ". Display book", menuCount++ + ". Display book detail",
-				menuCount++ + ". View My Profile Data", menuCount++ + ". Edit My Profile Data", };
+		menu = new String[] { 
+				menuCount++ + ". Display book", 
+				menuCount++ + ". Display book detail",
+				menuCount++ + ". View My Profile Data", 
+				menuCount++ + ". Edit My Profile Data", 
+		};
 		if (initAdditionalMenu) {
 			initAdditionalMenu();
 		}
