@@ -71,6 +71,7 @@ public abstract class Menu {
             	myEditUser();
             	break;
             case 0:
+                userManager.setCurrentUser(null);
                 return true;
         }
         return false;
@@ -135,8 +136,8 @@ public abstract class Menu {
     	myUserDetail();
     	String userId="";
 //        String userId = getUserId("edit");
-        String email = Helper.getString(() -> Helper.print("Email : "));;
-        String password = Helper.getString(() -> Helper.print("Password : "));;
+        String email = Helper.getString(() -> Helper.print("Email : "));
+        String password = Helper.getString(() -> Helper.print("Password : "));
         try {
         	userManager.editUser(userId, email, password);
             Helper.prompt("Successfully edited book!");
