@@ -1,15 +1,8 @@
 package Menu.Transaction.Payment;
 
-public class DebitCard implements Payment {
-    private final String bankName;
-
+public class DebitCard extends Card {
     public DebitCard(String bankName) {
-        this.bankName = bankName;
-    }
-
-    @Override
-    public boolean pay(int price) {
-        return true;
+        super(bankName);
     }
 
     @Override

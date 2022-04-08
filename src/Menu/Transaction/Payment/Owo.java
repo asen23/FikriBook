@@ -1,11 +1,6 @@
 package Menu.Transaction.Payment;
 
-public class Owo implements Payment{
-    @Override
-    public boolean pay(int price) {
-        return true;
-    }
-
+public class Owo extends EWallet{
     @Override
     public String getName() {
         return "Owo";
