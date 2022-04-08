@@ -5,7 +5,7 @@ import Helper.Helper;
 public class EWallet implements Payment {
     @Override
     public boolean pay(int price) {
-        Helper.printHeader(getName());
+        Helper.printHeader("Paying " + price + " with " + getName());
 
         String phoneNum = Helper.getString(
               () -> Helper.print("Please input your phone number : "),

@@ -11,7 +11,7 @@ public class Card implements Payment {
 
     @Override
     public boolean pay(int price) {
-        Helper.printHeader(getName());
+        Helper.printHeader("Paying " + price + " with " + getName());
 
         String cardNum = Helper.getString(
               () -> Helper.print("Please input your card number : "),
