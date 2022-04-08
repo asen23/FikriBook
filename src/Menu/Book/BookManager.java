@@ -48,6 +48,12 @@ public class BookManager {
     private String generateId() {
         return Helper.generateId("book");
     }
+
+    public boolean isValidBookId(String id) {
+        return books
+              .stream()
+              .anyMatch((book -> book.getId().equals(id)));
+    }
     
     public String getTitle(String bookId) {
         return books

@@ -6,6 +6,7 @@ import Menu.Transaction.Cart.CartItem;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class UserManager {
@@ -85,11 +86,10 @@ public class UserManager {
     }
 
     private Optional<User> getUserWithEmail(String email) {
-        Optional<User> user = users
+        return users
                 .stream()
                 .filter((u) -> u.getEmail().equals(email))
                 .findFirst();
-        return user;
     }
 
     public String getEmailWithId(String id) {
@@ -228,6 +228,10 @@ public class UserManager {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public boolean isValidEmail(String email) {
+        return Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE).matcher(email).find();
     }
 }
 
