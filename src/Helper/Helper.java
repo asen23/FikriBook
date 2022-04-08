@@ -140,7 +140,7 @@ public class Helper {
           int defaultValue,
           Function<Integer, Boolean> validation
     ) {
-        return getInt(callback, 0, validation, i -> false);
+        return getInt(callback, defaultValue, validation, i -> false);
     }
 
     public static int getInt(
