@@ -174,10 +174,12 @@ public abstract class Menu {
         User user = userManager.getUser(userId);
         if(user instanceof Buyer) {
             Buyer buyer = (Buyer) user;
-            String address = Helper.getString(() -> Helper.print("Address : "));
+            String address = Helper.getString(
+                  () -> Helper.print("Address (enter to keep current value) : ")
+            );
             if (address.isEmpty()) address = buyer.getAddress();
             String phoneNumber = Helper.getString(
-                  () -> Helper.print("Phone Number : "),
+                  () -> Helper.print("Phone Number (enter to keep current value) : "),
                   input -> {
                       if (input.matches("[0-9]+")) return false;
                       Helper.println("Phone Number should only contain number");
