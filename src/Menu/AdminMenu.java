@@ -6,7 +6,6 @@ import Helper.Helper;
 import Menu.User.UserManager;
 
 public class AdminMenu extends Menu {
-    protected static final UserManager userManager = UserManager.getInstance();
     private final String[] adminMenu;
     private final int currentMenuCount;
 
