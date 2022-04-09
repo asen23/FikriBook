@@ -40,7 +40,7 @@ public abstract class Menu {
         while (true) {
             Helper.cls();
             Helper.printHeader("FikriBook Menu " + getHeaderSuffix());
-            Helper.println("To cancel form please press enter");
+            Helper.println("Press enter to go back unless stated otherwise");
             Helper.println(menu);
             int choice = Helper.getInt(() -> Helper.print(">> "));
             boolean exit = processMenu(choice);
