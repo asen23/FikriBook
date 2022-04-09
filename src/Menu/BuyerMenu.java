@@ -92,7 +92,7 @@ public class BuyerMenu extends Menu {
         String bookId = Helper.getString(
               () -> Helper.print("Book ID : "),
               id -> {
-                  if (bookManager.isValidBookId(id)) return false;
+                  if (bookManager.isValidId(id)) return false;
                   Helper.println("Invalid book id!");
                   return true;
               },
@@ -140,7 +140,7 @@ public class BuyerMenu extends Menu {
         String bookId = Helper.getString(
               () -> Helper.print("Book ID : "),
               id -> {
-                  if (bookManager.isValidBookId(id)) return false;
+                  if (bookManager.isValidId(id)) return false;
                   Helper.println("Invalid book id!");
                   return true;
               },

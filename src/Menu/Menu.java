@@ -99,7 +99,7 @@ public abstract class Menu {
         String bookId = Helper.getString(
               () -> Helper.print("Input Book ID : "),
               id -> {
-                  if(bookManager.isValidBookId(id)) return false;
+                  if(bookManager.isValidId(id)) return false;
                   Helper.println("Invalid Book ID");
                   return true;
               },
@@ -109,13 +109,13 @@ public abstract class Menu {
 
         Helper.println();
 
-        Helper.printHeader(bookManager.getTitle(bookId));
+        Helper.printHeader(bookManager.getBook(bookId).getTitle());
         Helper.println("Book ID : " + bookId);
-        Helper.println("ISBN : " + bookManager.getIsbn(bookId));
-        Helper.println("Page : " + bookManager.getPage(bookId));
-        Helper.println("Authors : " + bookManager.getAuthors(bookId));
-        Helper.println("Publisher : " + bookManager.getPublisher(bookId));
-        Helper.println("Price : " + bookManager.getPrice(bookId));
+        Helper.println("ISBN : " + bookManager.getBook(bookId).getIsbn());
+        Helper.println("Page : " + bookManager.getBook(bookId).getPage());
+        Helper.println("Authors : " + bookManager.getBook(bookId).getAuthors());
+        Helper.println("Publisher : " + bookManager.getBook(bookId).getPublisher());
+        Helper.println("Price : " + bookManager.getBook(bookId).getPrice());
 
         Helper.prompt();
     }

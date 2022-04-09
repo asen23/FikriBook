@@ -49,7 +49,7 @@ public class BookManager {
         return Helper.generateId("book");
     }
 
-    public boolean isValidBookId(String id) {
+    public boolean isValidId(String id) {
         return books
               .stream()
               .anyMatch((book -> book.getId().equals(id)));
@@ -62,62 +62,6 @@ public class BookManager {
               .findFirst()
               .orElse(null);
     }
-    
-    public String getTitle(String bookId) {
-        return books
-              .stream()
-              .filter((book) -> book.getId().equals(bookId))
-              .findFirst()
-              .map(Book::getTitle)
-              .orElse("404 Not Found");
-    }
-    
-     public String getIsbn(String bookId) {
-        return books
-              .stream()
-              .filter((book) -> book.getId().equals(bookId))
-              .findFirst()
-              .map(Book::getIsbn)
-              .orElse("404 Not Found");
-    }
-     
-    public int getPage(String bookId) {
-        return books
-              .stream()
-              .filter((book) -> book.getId().equals(bookId))
-              .findFirst()
-              .map(Book::getPrice)
-              .orElse(0);
-    }
-    
-    public List<String> getAuthors(String bookId) {
-        return books
-              .stream()
-              .filter((book) -> book.getId().equals(bookId))
-              .findFirst()
-              .map(Book::getAuthors)
-              .orElse(null);
-    }
-    
-    public String getPublisher(String bookId) {
-        return books
-              .stream()
-              .filter((book) -> book.getId().equals(bookId))
-              .findFirst()
-              .map(Book::getPublisher)
-              .orElse("404 Not Found");
-    }
-    
-    public int getPrice(String bookId) {
-        return books
-              .stream()
-              .filter((book) -> book.getId().equals(bookId))
-              .findFirst()
-              .map(Book::getPrice)
-              .orElse(0);
-    }
-    
-    
 
     public Stream<Book> listBook() {
         return books.stream();

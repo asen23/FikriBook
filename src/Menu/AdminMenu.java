@@ -138,7 +138,7 @@ public class AdminMenu extends Menu {
         return Helper.getString(
               () -> Helper.print("Book id to " + s + " : "),
               id -> {
-                  if (bookManager.isValidBookId(id)) return false;
+                  if (bookManager.isValidId(id)) return false;
                   Helper.println("Book Id does not exist!");
                   return true;
               },
