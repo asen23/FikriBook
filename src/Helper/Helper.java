@@ -54,7 +54,7 @@ public class Helper {
         Helper.println(headerSeparator);
     }
 
-    public static void println(String[] s, int[] pad, String separator) {
+    private static void println(String[] s, int[] pad, String separator) {
         int[] fullPad = new int[s.length];
         for (int i = 0; i < s.length; i++) {
             if (i >= pad.length) {
@@ -64,17 +64,9 @@ public class Helper {
             }
         }
         for (int i = 0; i < s.length; i++) {
-            Helper.print(separator + pad(s[i], fullPad[i]));
+            Helper.print(separator + String.format("%" + -fullPad[i] + "s", s[i]));
         }
         Helper.println(separator);
-    }
-
-    public static void println(String[] s, String separator) {
-        println(s, new int[0], separator);
-    }
-
-    public static void println(String s, int pad) {
-        System.out.println(pad(s, pad));
     }
 
     public static void println() {
@@ -91,17 +83,8 @@ public class Helper {
         prompt();
     }
 
-    public static String pad(String s, int pad) {
-        return String.format("%" + -pad + "s", s);
-    }
-
     public static void print(String s) {
         System.out.print(s);
-    }
-
-    public static String getString() {
-        return getString(() -> {
-        });
     }
 
     public static String getString(Runnable callback) {
@@ -124,15 +107,6 @@ public class Helper {
             if (cancelCondition.apply(result)) return result;
         } while (validation.apply(result));
         return result;
-    }
-
-    public static int getInt() {
-        return getInt(() -> {
-        });
-    }
-
-    public static int getInt(Runnable callback) {
-        return getInt(callback, 0, i -> false, i -> false);
     }
 
     public static int getInt(
@@ -171,7 +145,7 @@ public class Helper {
         return Stream.concat(Arrays.stream(a), Arrays.stream(b)).toArray(String[]::new);
     }
 
-    public static String repeatString(String s, int count) {
+    private static String repeatString(String s, int count) {
         return new String(new char[count]).replace("\0", s);
     }
 
