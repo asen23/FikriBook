@@ -62,9 +62,7 @@ public class BuyerMenu extends Menu {
         return super.processMenu(choice);
     }
 
-    private void viewCartItems() {
-        Helper.cls();
-        Helper.printHeader("Cart Content");
+    private void printCartItems() {
         String userId = userManager.getCurrentUser().getId();
         try {
             Helper.printTable(
@@ -81,6 +79,12 @@ public class BuyerMenu extends Menu {
             );
         } catch (Exception ignored) {
         }
+    }
+
+    private void viewCartItems() {
+        Helper.cls();
+        Helper.printHeader("Cart Content");
+        printCartItems();
         Helper.prompt();
     }
 
@@ -136,7 +140,7 @@ public class BuyerMenu extends Menu {
         Helper.cls();
         Helper.printHeader("Edit Cart");
         if (isCartEmpty(userId)) return;
-        viewCartItems();
+        printCartItems();
 
         String bookId = Helper.getString(
               () -> Helper.print("Book ID : "),
