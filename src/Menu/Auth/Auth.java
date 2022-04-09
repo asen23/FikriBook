@@ -32,7 +32,15 @@ public class Auth {
                   "2. Register",
                   "0. Exit",
             });
-            int choice = Helper.getInt(() -> Helper.print(">> "));
+            int choice = Helper.getInt(
+                  () -> Helper.print(">> "),
+                  -1,
+                  input -> {
+                      if (input >= 0 && input <= 2) return false;
+                      Helper.println("Please choose number from available menu!");
+                      return true;
+                  }
+            );
             switch (choice) {
                 case 0:
                     return null;

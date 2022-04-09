@@ -43,7 +43,15 @@ public abstract class Menu {
             Helper.printHeader("FikriBook Menu " + getHeaderSuffix());
             Helper.println("Press enter to go back unless stated otherwise");
             Helper.println(menu);
-            int choice = Helper.getInt(() -> Helper.print(">> "));
+            int choice = Helper.getInt(
+                  () -> Helper.print(">> "),
+                  -1,
+                  input -> {
+                      if (input >= 0 && input < menuCount) return false;
+                      Helper.println("Please choose number from available menu!");
+                      return true;
+                  }
+            );
             boolean exit = processMenu(choice);
             if (exit) {
                 return;
@@ -100,7 +108,7 @@ public abstract class Menu {
         String bookId = Helper.getString(
               () -> Helper.print("Input Book ID : "),
               id -> {
-                  if(bookManager.isValidId(id)) return false;
+                  if (bookManager.isValidId(id)) return false;
                   Helper.println("Invalid Book ID");
                   return true;
               },
@@ -132,7 +140,7 @@ public abstract class Menu {
         Helper.println("User ID: " + userId);
         Helper.println("Name : " + user.getName());
         Helper.println("Email : " + user.getEmail());
-        if(user instanceof Buyer) {
+        if (user instanceof Buyer) {
             Buyer buyer = (Buyer) user;
             Helper.println("Dob : " + buyer.getDob());
             Helper.println("Address : " + buyer.getAddress());
@@ -162,7 +170,7 @@ public abstract class Menu {
               () -> Helper.print("Password (enter to keep current value) : "),
               input -> {
                   String errorMessage = userManager.isValidPassword(input);
-                  if(errorMessage.isEmpty()) return false;
+                  if (errorMessage.isEmpty()) return false;
                   Helper.println(errorMessage);
                   return true;
               },
@@ -172,7 +180,7 @@ public abstract class Menu {
             password = userManager.getCurrentUser().getEmail();
         }
         User user = userManager.getUser(userId);
-        if(user instanceof Buyer) {
+        if (user instanceof Buyer) {
             Buyer buyer = (Buyer) user;
             String address = Helper.getString(
                   () -> Helper.print("Address (enter to keep current value) : ")
