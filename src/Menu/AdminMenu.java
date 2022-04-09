@@ -197,8 +197,7 @@ public class AdminMenu extends Menu {
         Helper.prompt();
     }
 
-    protected void listUser() {
-        Helper.printHeader("User List");
+    protected void printUser() {
         Helper.printTable(
               new String[]{"ID", "Name", "Email"},
               "=",
@@ -212,12 +211,17 @@ public class AdminMenu extends Menu {
               new int[]{50, 10, 30},
               "| "
         );
+    }
+
+    protected void listUser() {
+        Helper.printHeader("User List");
+        printUser();
         Helper.prompt();
     }
 
     protected void userDetail() {
         Helper.printHeader("User Detail");
-        listUser();
+        printUser();
 
         String userId = getUserId("Input User ID : ");
 
@@ -268,7 +272,7 @@ public class AdminMenu extends Menu {
               },
               String::isEmpty
         );
-        if (email.isEmpty()) return;
+        if (email.isEmpty()) email = userManager.getUser(userId).getEmail();
         String password = Helper.getString(
               () -> Helper.print("Password : "),
               input -> {
@@ -279,7 +283,7 @@ public class AdminMenu extends Menu {
               },
               String::isEmpty
         );
-        if (password.isEmpty()) return;
+        if (password.isEmpty()) password = userManager.getUser(userId).getPassword();
         try {
             userManager.editUser(userId, email, password);
             Helper.prompt("Successfully edited user!");
