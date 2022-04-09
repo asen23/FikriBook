@@ -113,7 +113,8 @@ public class BuyerMenu extends Menu {
         try {
             userManager.addCartItem(userId, bookId, quantity);
         } catch (Exception e) {
-            Helper.println(e.getMessage());
+            Helper.prompt(e.getMessage());
+            return;
         }
 
         Helper.prompt("Added book to cart successfully!");
