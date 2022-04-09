@@ -3,11 +3,12 @@ package Menu;
 import Helper.Helper;
 import Menu.Book.BookManager;
 import Menu.Transaction.TransactionManager;
+import Menu.User.Buyer;
+import Menu.User.User;
 import Menu.User.UserManager;
 
 public abstract class Menu {
     protected static final UserManager userManager = UserManager.getInstance();
-
     protected static BookManager bookManager = BookManager.getInstance();
     protected static TransactionManager transactionManager = TransactionManager.getInstance();
     protected String[] menu;
@@ -127,9 +128,16 @@ public abstract class Menu {
     protected void myUserDetail() {
         Helper.printHeader("User Detail");
         String userId = getCurrentUserId();
+        User user = userManager.getUser(userId);
         Helper.println("User ID: " + userId);
-        Helper.println("Name : " + userManager.getUser(userId).getName());
-        Helper.println("Email : " + userManager.getUser(userId).getEmail());
+        Helper.println("Name : " + user.getName());
+        Helper.println("Email : " + user.getEmail());
+        if(user instanceof Buyer) {
+            Buyer buyer = (Buyer) user;
+            Helper.println("Dob : " + buyer.getDob());
+            Helper.println("Address : " + buyer.getAddress());
+            Helper.println("PhoneNumber : " + buyer.getPhoneNumber());
+        }
 
         Helper.prompt();
     }
@@ -162,6 +170,35 @@ public abstract class Menu {
         );
         if (password.isEmpty()) {
             password = userManager.getCurrentUser().getEmail();
+        }
+        User user = userManager.getUser(userId);
+        if(user instanceof Buyer) {
+            Buyer buyer = (Buyer) user;
+            String address = Helper.getString(() -> Helper.print("Address : "));
+            if (address.isEmpty()) address = buyer.getAddress();
+            String phoneNumber = Helper.getString(
+                  () -> Helper.print("Phone Number : "),
+                  input -> {
+                      if (input.matches("[0-9]+")) return false;
+                      Helper.println("Phone Number should only contain number");
+                      return true;
+                  },
+                  String::isEmpty
+            );
+            if (phoneNumber.isEmpty()) phoneNumber = buyer.getPhoneNumber();
+            try {
+                userManager.editBuyer(
+                      userId,
+                      email,
+                      password,
+                      address,
+                      phoneNumber
+                );
+                Helper.prompt("Successfully edited user!");
+            } catch (Exception e) {
+                Helper.prompt(e.getMessage());
+            }
+            return;
         }
         try {
             userManager.editUser(userId, email, password);

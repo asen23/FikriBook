@@ -184,6 +184,20 @@ public class UserManager {
         user.orElse(null).setPassword(password);
     }
 
+    public void editBuyer(String id, String email, String password, String address, String phoneNumber) throws Exception {
+        Optional<Buyer> buyer = users
+              .stream()
+              .filter(b -> b instanceof Buyer)
+              .map(b -> (Buyer) b)
+              .filter(b -> b.getId().equals(id))
+              .findFirst();
+        if (!buyer.isPresent()) {
+            throw new Exception("Invalid user id!");
+        }
+        buyer.orElse(null).setEmail(email);
+        buyer.orElse(null).setPassword(password);
+    }
+
     public Stream<User> listUser() {
         return users.stream();
     }
