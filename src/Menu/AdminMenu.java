@@ -3,7 +3,6 @@ package Menu;
 import java.util.Arrays;
 
 import Helper.Helper;
-import Menu.User.UserManager;
 
 public class AdminMenu extends Menu {
     private final String[] adminMenu;
@@ -198,16 +197,17 @@ public class AdminMenu extends Menu {
 
     protected void printUser() {
         Helper.printTable(
-              new String[]{"ID", "Name", "Email"},
+              new String[]{"ID", "Name", "Email", "Type"},
               "=",
               userManager.listUser()
                     .map(user -> new String[]{
                           user.getId(),
                           user.getName(),
                           user.getEmail(),
+                          user.getUserType().toString()
                     })
                     .toArray(String[][]::new),
-              new int[]{50, 10, 30},
+              new int[]{50, 10, 30, 10},
               "| "
         );
     }
@@ -247,7 +247,7 @@ public class AdminMenu extends Menu {
 
     protected void deleteUser() {
         Helper.printHeader("Delete User");
-        listUser();
+        printUser();
         String userId = getUserId("User id to delete : ");
         if (userId.isEmpty()) return;
         try {
@@ -260,7 +260,7 @@ public class AdminMenu extends Menu {
 
     protected void editUser() {
         Helper.printHeader("Edit User");
-        listUser();
+        printUser();
         String userId = getUserId("User id to edit : ");
         if (userId.isEmpty()) return;
         String email = Helper.getString(
