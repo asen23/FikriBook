@@ -13,30 +13,39 @@ public class BookManager {
         if(Helper.isDummyEnabled()){
             books.add(new Book(
                   "book-2a77cd44-4e85-4018-a21c-8c352f071d56",
-                  "Book1",
-                  "1234567891",
-                  100,
-                  new ArrayList<>(Collections.singletonList("author1")),
-                  "publisher1",
-                  100000
+                  "1984",
+                  "9783843701419",
+                  328,
+                  new ArrayList<>(Collections.singletonList("George Orwell")),
+                  "Secker & Warburg",
+                  89000
             ));
             books.add(new Book(
                   "book-9fe27cce-29f1-4778-98c7-d3bdcaf5ef1b",
-                  "Book2",
-                  "2234567892",
-                  200,
-                  new ArrayList<>(Arrays.asList("author2", "author4")),
-                  "publisher2",
-                  200000
+                  "To Kill a Mockingbird",
+                  "9780099549482",
+                  309,
+                  new ArrayList<>(Collections.singletonList("Harper Lee")),
+                  "J. B. Lippincott & Co.",
+                  160000
             ));
             books.add(new Book(
                   "book-67e7279c-0a2c-4321-9cca-3eb339dffd08",
-                  "Book3",
-                  "3234567893",
-                  300,
-                  new ArrayList<>(Collections.singletonList("author3")),
-                  "publisher3",
-                  300000
+                  "Good Omens",
+                  "9788448022440",
+                  288,
+                  new ArrayList<>(Arrays.asList("Terry Pratchett", "Neil Gaiman")),
+                  "Gollancz",
+                  165000
+            ));
+            books.add(new Book(
+                  generateId(),
+                  "The Explorers Guild: Volume One: A Passage to Shambhala",
+                  "9781476727417",
+                  784,
+                  new ArrayList<>(Arrays.asList("Kevin Costner", "Jon Baird", "Rick Ross")),
+                  "Simon and Schuster",
+                  223000
             ));
         }
     }

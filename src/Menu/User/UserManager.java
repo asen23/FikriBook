@@ -15,64 +15,69 @@ public class UserManager {
     private User currentUser = null;
 
     private UserManager() {
-        users.add(new Owner(generateId(), "Owner", "owner@fikribook.com", "idk"));
+        users.add(new Owner(
+              generateId(),
+              "Owner",
+              "owner@fikribook.com",
+              "AVerySecretP4ssw0rd")
+        );
         if (Helper.isDummyEnabled()) {
             users.add(new Admin(
                   generateId(),
-                  "Admin1",
-                  "admin1@fikribook.com",
-                  "Admin1",
+                  "Admin",
+                  "admin@fikribook.com",
+                  "ADMdefault1",
                   true
             ));
             users.add(new Admin(
                   generateId(),
-                  "Admin2",
-                  "admin2@fikribook.com",
-                  "Admin2",
+                  "Lester",
+                  "lester@fikribook.com",
+                  "Lpws3cr3t",
                   false
             ));
             users.add(new Admin(
                   generateId(),
-                  "Admin3",
-                  "admin3@fikribook.com",
-                  "Admin3",
+                  "Conrad",
+                  "conrad@fikribook.com",
+                  "Admin321",
                   true
             ));
             users.add(new Buyer(
                   "user-fba9b13e-c438-48cc-ad65-670c3d356e40",
-                  "buyer1",
-                  "buyer1@buyer.com",
-                  "buyer1",
+                  "Aaron",
+                  "aaron@gmail.com",
+                  "Adidado123",
                   LocalDate.of(2000, 1, 1),
-                  "buyer1",
-                  "buyer1"
+                  "Apple Street",
+                  "9183921613"
             ));
             users.add(new Buyer(
                   "user-adb4ff58-8d7a-45e6-a733-540ea4aa2545",
-                  "buyer2",
-                  "buyer2@buyer.com",
-                  "buyer2",
+                  "Helena",
+                  "helena@yahoo.com",
+                  "HeLeNA020200",
                   LocalDate.of(2000, 2, 2),
-                  "buyer2",
-                  "buyer2"
+                  "Wally Avenue",
+                  "5188975882"
             ));
             users.add(new Buyer(
                   "user-9970db0b-048f-4321-9cd8-b7717818e456",
-                  "buyer3",
-                  "buyer3@buyer.com",
-                  "buyer3",
+                  "Winfred",
+                  "winfred@msn.com",
+                  "gottem233A",
                   LocalDate.of(2000, 3, 3),
-                  "buyer3",
-                  "buyer3"
+                  "Poppie Street",
+                  "9012128451"
             ));
             users.add(new Buyer(
                   "user-26963a6d-1c91-4f09-92dc-865249a80d0f",
-                  "buyer4",
-                  "buyer4@buyer.com",
-                  "buyer4",
+                  "Willie",
+                  "will.ie@outlook.com",
+                  "Eilliw44",
                   LocalDate.of(2000, 4, 4),
-                  "buyer4",
-                  "buyer4"
+                  "Nanny Avenue",
+                  "4053570295"
             ));
         }
     }
