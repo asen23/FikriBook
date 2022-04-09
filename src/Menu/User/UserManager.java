@@ -166,6 +166,9 @@ public class UserManager {
         if (!user.isPresent()) {
             throw new Exception("Invalid user id!");
         }
+        if(user.orElse(null).getUserType() == UserType.Owner) {
+            throw new Exception("You cannot delete owner account!");
+        }
         users.remove(user.orElse(null));
     }
 

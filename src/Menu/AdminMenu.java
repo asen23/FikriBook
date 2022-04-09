@@ -254,7 +254,8 @@ public class AdminMenu extends Menu {
         try {
             userManager.deleteUser(userId);
             Helper.prompt("Successfully deleted user!");
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            Helper.prompt(e.getMessage());
         }
     }
 
