@@ -190,7 +190,7 @@ public class AdminMenu extends Menu {
         Helper.printTable(new String[]{"ID", "Date", "Buyer"}, "=",
                           transactionManager.getTransaction()
                                 .map(transaction -> new String[]{transaction.getId(), transaction.getDateTime().toString(),
-                                      userManager.getEmailWithId(transaction.getBuyerId()),})
+                                      userManager.getUser(transaction.getBuyerId()).getEmail(),})
                                 .toArray(String[][]::new),
                           new int[]{50, 20, 30}, "| "
         );
@@ -225,8 +225,8 @@ public class AdminMenu extends Menu {
 
         Helper.printHeader("Detail");
         Helper.println("User ID: " + userId);
-        Helper.println("Name: " + userManager.getName(userId));
-        Helper.println("Email: " + userManager.getEmail(userId));
+        Helper.println("Name: " + userManager.getUser(userId).getName());
+        Helper.println("Email: " + userManager.getUser(userId).getEmail());
         Helper.prompt();
     }
 
@@ -234,7 +234,7 @@ public class AdminMenu extends Menu {
         return Helper.getString(
               () -> Helper.print(s),
               id -> {
-                  if (userManager.checkIdExist(id)) return false;
+                  if (userManager.isValidId(id)) return false;
                   Helper.println("User Id does not exist!");
                   return true;
               },

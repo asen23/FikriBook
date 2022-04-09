@@ -92,14 +92,6 @@ public class UserManager {
               .findFirst();
     }
 
-    public String getEmailWithId(String id) {
-        Optional<User> user = users
-              .stream()
-              .filter((u) -> u.getId().equals(id))
-              .findFirst();
-        return user.map(User::getEmail).orElse("");
-    }
-
     public User login(String email, String password) throws Exception {
         Optional<User> user = getUserWithEmail(email);
         if (!user.isPresent()) throw new Exception("Email not found!");
@@ -108,7 +100,7 @@ public class UserManager {
         return currentUser;
     }
 
-    public boolean checkIdExist(String id) {
+    public boolean isValidId(String id) {
         return users
               .stream()
               .anyMatch(user -> user.getId().equals(id));
@@ -164,33 +156,6 @@ public class UserManager {
               .filter(user -> user.getId().equals(id))
               .findFirst()
               .orElse(null);
-    }
-
-    public String getName(String userId) {
-        return users
-              .stream()
-              .filter((user) -> user.getId().equals(userId))
-              .findFirst()
-              .map(User::getName)
-              .orElse("404 Not Found");
-    }
-
-    public String getEmail(String userId) {
-        return users
-              .stream()
-              .filter((user) -> user.getId().equals(userId))
-              .findFirst()
-              .map(User::getEmail)
-              .orElse("404 Not Found");
-    }
-
-    public String getPassword(String userId) {
-        return users
-              .stream()
-              .filter((user) -> user.getId().equals(userId))
-              .findFirst()
-              .map(User::getPassword)
-              .orElse("404 Not Found");
     }
 
     public void deleteUser(String id) throws Exception {

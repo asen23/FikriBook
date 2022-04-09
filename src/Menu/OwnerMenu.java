@@ -3,8 +3,6 @@ package Menu;
 import Helper.Helper;
 import Menu.User.Admin;
 
-import java.time.LocalDate;
-
 public class OwnerMenu extends AdminMenu {
     private final String[] ownerMenu;
     private final int currentMenuCount;
@@ -120,7 +118,7 @@ public class OwnerMenu extends AdminMenu {
         return Helper.getString(
               () -> Helper.print("Input Admin ID : "),
               id -> {
-                  if(userManager.checkIdExist(id)) return false;
+                  if(userManager.isValidId(id)) return false;
                   Helper.println("Invalid Admin ID");
                   return true;
               },

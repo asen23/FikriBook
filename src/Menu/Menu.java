@@ -128,8 +128,8 @@ public abstract class Menu {
         Helper.printHeader("User Detail");
         String userId = getCurrentUserId();
         Helper.println("User ID: " + userId);
-        Helper.println("Name : " + userManager.getName(userId));
-        Helper.println("Email : " + userManager.getEmail(userId));
+        Helper.println("Name : " + userManager.getUser(userId).getName());
+        Helper.println("Email : " + userManager.getUser(userId).getEmail());
 
         Helper.prompt();
     }
