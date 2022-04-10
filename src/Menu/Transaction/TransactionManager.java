@@ -2,7 +2,6 @@ package Menu.Transaction;
 
 import Helper.Helper;
 import Menu.Transaction.Cart.CartItem;
-import Menu.User.User;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -18,19 +17,15 @@ public class TransactionManager {
                     generateId(),
                     LocalDateTime.of(2022, 3, 1, 10, 10, 10, 100000000),
                     Collections.singletonList(
-                            new CartItem("book-2a77cd44-4e85-4018-a21c-8c352f071d56", 1)
-                    ),
-                    "user-fba9b13e-c438-48cc-ad65-670c3d356e40"
-            ));
+                            new CartItem("book-2a77cd44-4e85-4018-a21c-8c352f071d56", 1)),
+                    "user-fba9b13e-c438-48cc-ad65-670c3d356e40"));
             transactions.add(new Transaction(
                     generateId(),
                     LocalDateTime.of(2022, 3, 2, 2, 2, 2, 20000000),
                     Arrays.asList(
                             new CartItem("book-9fe27cce-29f1-4778-98c7-d3bdcaf5ef1b", 2),
-                            new CartItem("book-67e7279c-0a2c-4321-9cca-3eb339dffd08", 1)
-                    ),
-                    "user-adb4ff58-8d7a-45e6-a733-540ea4aa2545"
-            ));
+                            new CartItem("book-67e7279c-0a2c-4321-9cca-3eb339dffd08", 1)),
+                    "user-adb4ff58-8d7a-45e6-a733-540ea4aa2545"));
         }
     }
 
@@ -51,8 +46,7 @@ public class TransactionManager {
                 generateId(),
                 LocalDateTime.now(),
                 cartItems,
-                userId
-        );
+                userId);
         transactions.add(transaction);
     }
 
@@ -64,6 +58,5 @@ public class TransactionManager {
                 .orElseThrow(() -> new Exception("TransactionId invalid"))
                 .getDetails();
     }
-
 
 }
